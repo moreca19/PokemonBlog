@@ -1,4 +1,4 @@
-﻿using PokemonBlog.Model;
+﻿
 using System.Diagnostics.Contracts;
 
 namespace PokemonBlog.Models

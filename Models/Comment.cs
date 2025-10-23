@@ -1,4 +1,4 @@
-﻿using PokemonBlog.Model;
+﻿
 
 namespace PokemonBlog.Models
 {
@@ -7,6 +7,10 @@ namespace PokemonBlog.Models
         public int Id { get; set; }
 
         public string Content { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
+
         public int UserId { get; set; }
         public User User { get; set; } 
         public int PostId {  get; set; }

@@ -1,18 +1,24 @@
-﻿using PokemonBlog.Models;
-
-namespace PokemonBlog.Model
+﻿
+namespace PokemonBlog.Models
 {
     public class User
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public string UserName { get; set; }
+
         public string Email { get; set; }
         public string DateOfBirth { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate {  get; set; }
+
 
         public ICollection<Post> Posts { get; set; } = new List<Post>(); // one user can have many posts
         public ICollection<Comment> Comments { get; set; } = new List<Comment>(); // user can have multiple comments 
 
-        public ICollection<Decklist> Decklists { get; set; } = new List<Decklist>();
+        public ICollection<DeckList> Decklists { get; set; } = new List<DeckList>(); // user can uplaod many decklists
 
     }
 }

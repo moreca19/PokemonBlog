@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PokemonBlog.Model;
+using PokemonBlog.Models;
 namespace PokemonBlog
 {
     public class Program
