@@ -402,3 +402,5 @@ FodyWeavers.xsd
 
 # Ignore appsettings.json for now, because Carlos has a different port number in his file
 appsettings.json
+backend/obj/
+backend/bin/
