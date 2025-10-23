@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RK7ZYwp6B5I=",
+  "dgSpecHash": "XfWBXY2vkgS9fDQ6WkL+kuhK9UlOhil9ZzTwQYp5mJ9u+J661WLAMlZ4vLrITHDlYMIN2OKf4skdNsXDaT9c7w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\morec\\source\\repos\\PokemonBlog\\PokemonBlog.csproj",
+  "projectFilePath": "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\PokemonBlog.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\morec\\.nuget\\packages\\aspire.npgsql.entityframeworkcore.postgresql\\9.5.1\\aspire.npgsql.entityframeworkcore.postgresql.9.5.1.nupkg.sha512",
     "C:\\Users\\morec\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",

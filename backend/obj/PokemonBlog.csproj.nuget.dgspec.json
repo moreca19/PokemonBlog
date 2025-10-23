@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\morec\\source\\repos\\PokemonBlog\\PokemonBlog.csproj": {}
+    "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\PokemonBlog.csproj": {}
   },
   "projects": {
-    "C:\\Users\\morec\\source\\repos\\PokemonBlog\\PokemonBlog.csproj": {
+    "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\PokemonBlog.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\morec\\source\\repos\\PokemonBlog\\PokemonBlog.csproj",
+        "projectUniqueName": "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\PokemonBlog.csproj",
         "projectName": "PokemonBlog",
-        "projectPath": "C:\\Users\\morec\\source\\repos\\PokemonBlog\\PokemonBlog.csproj",
+        "projectPath": "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\PokemonBlog.csproj",
         "packagesPath": "C:\\Users\\morec\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\morec\\source\\repos\\PokemonBlog\\obj\\",
+        "outputPath": "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\morec\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -34,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -91,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
