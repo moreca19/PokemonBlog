@@ -36,12 +36,31 @@ namespace PokemonBlog.Models
                 .WithOne(D => D.User)
                 .HasForeignKey(D => D.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+            
+            modelBuilder.Entity<User>()
+                .HasMany(F=>F.FriendShipsSent)
+                .WithOne(U=>U.Sender)
+                .HasForeignKey(U=>U.SenderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>()
+                .HasMany(F => F.FriendShipsRecieved)
+                .WithOne(U => U.Reciever)
+                .HasForeignKey(U => U.RecieverId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Status>()
+                .HasMany(F => F.FriendShips) //Status can be part of many friendships
+                .WithOne(S => S.status) // Frienships table only has one table
+                .HasForeignKey(F => F.StatusId) // the foreign key 
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Post>()
                 .HasMany(P=>P.Comments)
                 .WithOne(C => C.Post)
                 .HasForeignKey(C => C.PostId)
                 .OnDelete(DeleteBehavior.Cascade);
+            
 
             modelBuilder.Entity<User>()
                 .HasIndex(U => U.Email)

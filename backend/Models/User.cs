@@ -20,5 +20,9 @@ namespace PokemonBlog.Models
 
         public ICollection<DeckList> Decklists { get; set; } = new List<DeckList>(); // user can uplaod many decklists
 
+        public ICollection<FriendShip> FriendShipsSent { get; set; } //User can send multiple frind requests
+
+        public ICollection<FriendShip> FriendShipsRecieved { get; set; } // user can get multiple friend requests
+
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\PokemonBlog.csproj": {}
+    "C:\\Users\\morec\\source\\repos\\PokemonBlog\\backend\\PokemonBlog.csproj": {}
   },
   "projects": {
-    "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\PokemonBlog.csproj": {
+    "C:\\Users\\morec\\source\\repos\\PokemonBlog\\backend\\PokemonBlog.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\PokemonBlog.csproj",
+        "projectUniqueName": "C:\\Users\\morec\\source\\repos\\PokemonBlog\\backend\\PokemonBlog.csproj",
         "projectName": "PokemonBlog",
-        "projectPath": "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\PokemonBlog.csproj",
+        "projectPath": "C:\\Users\\morec\\source\\repos\\PokemonBlog\\backend\\PokemonBlog.csproj",
         "packagesPath": "C:\\Users\\morec\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\morec\\Source\\Repos\\PokemonBlog\\backend\\obj\\",
+        "outputPath": "C:\\Users\\morec\\source\\repos\\PokemonBlog\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\morec\\AppData\\Roaming\\NuGet\\NuGet.Config",
