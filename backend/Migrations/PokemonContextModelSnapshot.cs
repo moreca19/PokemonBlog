@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using PokemonBlog.Models;
+using PokemonBlog.Data;
 
 #nullable disable
 
@@ -69,10 +69,6 @@ namespace PokemonBlog.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("DeckListURL")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("ListDescription")
                         .IsRequired()
                         .HasColumnType("text");
@@ -91,6 +87,37 @@ namespace PokemonBlog.Migrations
                     b.ToTable("DeckLists");
                 });
 
+            modelBuilder.Entity("PokemonBlog.Models.FriendShip", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("FriendShipCreated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("RecieverId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecieverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("FriendShip");
+                });
+
             modelBuilder.Entity("PokemonBlog.Models.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -105,10 +132,6 @@ namespace PokemonBlog.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("PhotoURL")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -125,6 +148,22 @@ namespace PokemonBlog.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("PokemonBlog.Models.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Description")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("PokemonBlog.Models.User", b =>
@@ -159,12 +198,6 @@ namespace PokemonBlog.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("UserName")
-                        .IsUnique();
-
                     b.ToTable("Users");
                 });
 
@@ -198,6 +231,33 @@ namespace PokemonBlog.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("PokemonBlog.Models.FriendShip", b =>
+                {
+                    b.HasOne("PokemonBlog.Models.User", "Reciever")
+                        .WithMany("FriendShipsRecieved")
+                        .HasForeignKey("RecieverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PokemonBlog.Models.User", "Sender")
+                        .WithMany("FriendShipsSent")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PokemonBlog.Models.Status", "status")
+                        .WithMany("FriendShips")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reciever");
+
+                    b.Navigation("Sender");
+
+                    b.Navigation("status");
+                });
+
             modelBuilder.Entity("PokemonBlog.Models.Post", b =>
                 {
                     b.HasOne("PokemonBlog.Models.User", "User")
@@ -214,11 +274,20 @@ namespace PokemonBlog.Migrations
                     b.Navigation("Comments");
                 });
 
+            modelBuilder.Entity("PokemonBlog.Models.Status", b =>
+                {
+                    b.Navigation("FriendShips");
+                });
+
             modelBuilder.Entity("PokemonBlog.Models.User", b =>
                 {
                     b.Navigation("Comments");
 
                     b.Navigation("Decklists");
+
+                    b.Navigation("FriendShipsRecieved");
+
+                    b.Navigation("FriendShipsSent");
 
                     b.Navigation("Posts");
                 });

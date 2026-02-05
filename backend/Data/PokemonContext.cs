@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PokemonBlog.Models;
 
-namespace PokemonBlog.Models
+
+namespace PokemonBlog.Data // This is what creates the database
 {
     public class PokemonContext : DbContext 
     {
@@ -37,22 +39,22 @@ namespace PokemonBlog.Models
                 .HasForeignKey(D => D.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
             
-            modelBuilder.Entity<User>()
-                .HasMany(F=>F.FriendShipsSent)
-                .WithOne(U=>U.Sender)
-                .HasForeignKey(U=>U.SenderId)
+            modelBuilder.Entity<User>() // user to freindship relationship
+                .HasMany(U=>U.FriendShipsSent) // user has many sent request in his collention
+                .WithOne(U=>U.Sender) // only one sender
+                .HasForeignKey(U=>U.SenderId) // sender Id
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<User>()
-                .HasMany(F => F.FriendShipsRecieved)
+            modelBuilder.Entity<User>() // another uses to frienshisp relationship 
+                .HasMany(U => U.FriendShipsRecieved)
                 .WithOne(U => U.Reciever)
                 .HasForeignKey(U => U.RecieverId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Status>()
                 .HasMany(F => F.FriendShips) //Status can be part of many friendships
-                .WithOne(S => S.status) // Frienships table only has one table
-                .HasForeignKey(F => F.StatusId) // the foreign key 
+                .WithOne(S => S.status) // Frienships table shows status
+                .HasForeignKey(F => F.StatusId) // the foreign key to that status
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Post>()
@@ -60,16 +62,7 @@ namespace PokemonBlog.Models
                 .WithOne(C => C.Post)
                 .HasForeignKey(C => C.PostId)
                 .OnDelete(DeleteBehavior.Cascade);
-            
-
-            modelBuilder.Entity<User>()
-                .HasIndex(U => U.Email)
-                .IsUnique();
-
-            modelBuilder.Entity<User>()
-                .HasIndex(U => U.UserName)
-                .IsUnique();
-
+           
 
 
 

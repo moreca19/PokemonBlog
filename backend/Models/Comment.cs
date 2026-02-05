@@ -11,10 +11,10 @@ namespace PokemonBlog.Models
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
-        public int UserId { get; set; }
-        public User User { get; set; } 
-        public int PostId {  get; set; }
-        public Post Post { get; set; } = null!; // Navigation property - one comment belongs to one post
+        public int UserId { get; set; } // foreign key to user who owns comment
+        public User User { get; set; } = null!; // this is here to be able to access User info thru this Comment object
+        public int PostId {  get; set; } // foreign key 
+        public Post Post { get; set; } = null!; // this is here to be able to access Post info thru this Comment object
 
 
     }

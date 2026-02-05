@@ -11,7 +11,7 @@ namespace PokemonBlog.Models
         
         public string ListDescription { get; set; }
 
-        public string DeckListURL { get; set; }
+       
 
         public DateTime DateCreated { get; set; }
         
