@@ -22,6 +22,8 @@ namespace PokemonBlog
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<IUserService, UserService>();
+
+            builder.Services.AddScoped<IPasswordInterface, PasswordInterface>();
            
             var app = builder.Build();
 

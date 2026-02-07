@@ -12,7 +12,7 @@ using PokemonBlog.Data;
 namespace PokemonBlog.Migrations
 {
     [DbContext(typeof(PokemonContext))]
-    [Migration("20260205025012_InitialCreate")]
+    [Migration("20260207062709_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -189,6 +189,10 @@ namespace PokemonBlog.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 

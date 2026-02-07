@@ -19,9 +19,15 @@ namespace PokemonBlog.Controllers
         }
 
         [HttpPost("NewUser")]
-        public IActionResult AddStudy([FromBody] UserDto dto)
+        public async Task<IActionResult> NewUser([FromBody] UserDto dto)
         {
-            _userService.NewUser(dto);
+           await _userService.NewUser(dto);
+           return Ok();
+        }
+        [HttpPost("CheckLogin")]
+        public async Task<IActionResult> CheckLogin([FromBody] UserSignIn userSignIn)
+        {
+            await _userService.CheckLogin(userSignIn) ;
             return Ok();
         }
     }
