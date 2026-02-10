@@ -10,7 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace PokemonBlog.Services
 {
-    public class PasswordInterface : IPasswordInterface
+    public class PasswordService : IPasswordService
     {
         
 

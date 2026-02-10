@@ -10,6 +10,8 @@ namespace PokemonBlog.Interfaces
         Task NewUser(UserDto userDto);
         Task<User?> GetByEmail(string email);
         public Task<User> CheckLogin(UserSignIn userSignIn);
+        public Task<User> UpdateUserName(UpdateUserName updateUserName);
+        public Task<User> UpdateUserPassword(UpdatePassword updatePassword);
 
     }
 }

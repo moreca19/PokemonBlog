@@ -1,4 +1,5 @@
-﻿using PokemonBlog.Models;
+﻿using Microsoft.Identity.Client;
+using PokemonBlog.Models;
 
 namespace PokemonBlog.Dto
 {
@@ -19,5 +20,17 @@ namespace PokemonBlog.Dto
         public string Email { get; set; }
        
 
+    }
+
+    public class UpdateUserName
+    {
+        public string Email { get; set; }
+        public string NewUserName { get; set; }
+    }
+
+    public class UpdatePassword
+    {
+        public string Email { get; set; }
+        public string NewPassword { get; set; }
     }
 }

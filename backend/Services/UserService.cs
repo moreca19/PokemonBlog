@@ -11,8 +11,8 @@ namespace PokemonBlog.Services
     public class UserService : IUserService
     {
         private readonly PokemonContext _context;
-        private readonly IPasswordInterface _password;
-        public UserService(PokemonContext context, IPasswordInterface password) 
+        private readonly IPasswordService _password;
+        public UserService(PokemonContext context, IPasswordService password) 
         {
 
             _context = context;
@@ -66,6 +66,32 @@ namespace PokemonBlog.Services
                 throw new Exception("The password is incorrect");
 
             }
+            return user;
+        }
+
+        public async Task<User> UpdateUserName(UpdateUserName updateUserName)
+        {
+            User? user = await GetByEmail(updateUserName.Email);
+
+            user.UserName = updateUserName.NewUserName;
+
+            _context.SaveChanges();
+
+            return user;
+        }
+
+        public async Task<User> UpdateUserPassword(UpdatePassword updatePassword)
+        {
+            User? user = await GetByEmail(updatePassword.Email);
+            string password = updatePassword.NewPassword;
+            if (password == null) 
+            {
+                throw new Exception("Password cannot be empty");
+            }
+
+            updatePassword.NewPassword = _password.Hash(password);
+            _context.SaveChanges();
+
             return user;
         }
 

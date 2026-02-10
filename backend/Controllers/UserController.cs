@@ -30,5 +30,19 @@ namespace PokemonBlog.Controllers
             await _userService.CheckLogin(userSignIn) ;
             return Ok();
         }
+
+        [HttpPost("UpdateUserName")]
+        public async Task<IActionResult> UpdateUserName([FromBody] UpdateUserName updateUserName)
+        {
+            await _userService.UpdateUserName(updateUserName);
+            return Ok();
+        }
+
+        [HttpPost("UpdateUserPassword")]
+        public async Task<IActionResult> UpdateUserPassword([FromBody] UpdatePassword updatePassword)
+        {
+            await _userService.UpdateUserPassword(updatePassword);
+            return Ok();
+        }
     }
 }

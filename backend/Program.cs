@@ -23,7 +23,7 @@ namespace PokemonBlog
 
             builder.Services.AddScoped<IUserService, UserService>();
 
-            builder.Services.AddScoped<IPasswordInterface, PasswordInterface>();
+            builder.Services.AddScoped<IPasswordService, PasswordService>();
            
             var app = builder.Build();
 
