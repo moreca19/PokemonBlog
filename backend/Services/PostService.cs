@@ -5,6 +5,7 @@ using PokemonBlog.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Npgsql.TypeMapping;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace PokemonBlog.Services
 {
@@ -38,6 +39,53 @@ namespace PokemonBlog.Services
 
             return Post;
         }
+
+        public async Task DeletePost(DeletePost deletePost)
+        {
+            var PostToDelete = await _context.Posts.FirstOrDefaultAsync(p => p.Id == deletePost.Id);
+
+            if(PostToDelete == null)
+            {
+                throw new Exception("Post does not exist");
+            }
+
+            _context.Posts.Remove(PostToDelete);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdatePost(UpdatePost updatePost)
+        {
+            var PostToUpdate = await _context.Posts.FirstOrDefaultAsync(p => p.Id == updatePost.Id);
+
+            if (PostToUpdate == null)
+            {
+                throw new Exception("Post cannot be udpated becasue it doesnt exist");
+
+            }
+
+            PostToUpdate.Title = updatePost.Title;
+            PostToUpdate.Content = updatePost.Content;
+            PostToUpdate.UpdatedDate = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
+
+        }
+
+        public async Task<IEnumerable<GetAllPosts>> GetAllPosts()
+        {
+            var AllPosts = await _context.Posts
+                .Select(p=> new GetAllPosts 
+            {
+                Title = p.Title,
+                Content = p.Content,
+                OwnerOfPost = p.User.Name
+            })
+             .ToListAsync();
+            return AllPosts;
+
+        }
+
+
 
     }
 }

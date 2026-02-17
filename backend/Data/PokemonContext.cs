@@ -60,7 +60,13 @@ namespace PokemonBlog.Data // This is what creates the database
             modelBuilder.Entity<Post>()
                 .HasMany(P=>P.Comments)
                 .WithOne(C => C.Post)
-                .HasForeignKey(C => C.PostId)
+                .HasForeignKey(C => C.PostId) // the Fk tha connects them lives in comments
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Post>()
+                .HasMany(P => P.Likes)
+                .WithOne(L => L.Post)
+                .HasForeignKey(L => L.PostId)
                 .OnDelete(DeleteBehavior.Cascade);
            
 

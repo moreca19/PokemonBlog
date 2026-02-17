@@ -51,7 +51,7 @@ namespace PokemonBlog.Services
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);        
         }
 
-        public async Task<User> CheckLogin(UserSignIn userSignIn)
+        public async Task<User> f(UserSignIn userSignIn)
         {
             User? user = await GetByEmail(userSignIn.Email);
             if (user == null)
