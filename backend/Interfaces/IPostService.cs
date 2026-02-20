@@ -10,7 +10,9 @@ namespace PokemonBlog.Interfaces
         Task DeletePost(DeletePost deletePost);
         Task UpdatePost(UpdatePost updatePost);
 
-        Task <IEnumerable<GetAllPosts>> GetAllPosts();  
+        Task <IEnumerable<GetAllPosts>> GetAllPosts();
+
+        Task<IEnumerable<LikeByUsers>> GetUsersWhoLikedPost(int PostId);
             
     }
 }

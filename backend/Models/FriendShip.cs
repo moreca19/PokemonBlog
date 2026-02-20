@@ -10,7 +10,7 @@
         public int RecieverId {  get; set; }
         public User Reciever { get; set; }
 
-        public Status status { get; set; }
+        public FriendShipStatus status { get; set; }
         public int StatusId { get; set; }
 
 

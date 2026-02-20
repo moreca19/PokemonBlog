@@ -1,6 +1,6 @@
 ﻿namespace PokemonBlog.Models
 {
-    public class Status
+    public class FriendShipStatus
     {
         public int Id { get; set; }
         public bool Description { get; set; }

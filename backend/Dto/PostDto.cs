@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using System.Globalization;
 
 namespace PokemonBlog.Dto
 {
@@ -28,5 +29,10 @@ namespace PokemonBlog.Dto
         public string Title { get; set; }
         public string Content { get; set; }
         public string OwnerOfPost { get; set; }
+    }
+
+    public class LikeByUsers
+    {
+        public string name { get; set; }
     }
 }

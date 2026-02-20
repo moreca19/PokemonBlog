@@ -85,6 +85,19 @@ namespace PokemonBlog.Services
 
         }
 
+        public async Task<IEnumerable<LikeByUsers>> GetUsersWhoLikedPost(int PostId)
+        {
+            var AllUsersWhoLikedPost = await _context.Likes
+                .Where(l => l.PostId == PostId)
+                .Select(l => new LikeByUsers
+                {
+                    name = l.User.Name
+                })
+                .ToListAsync();
+            return AllUsersWhoLikedPost;
+
+        }
+
 
 
     }

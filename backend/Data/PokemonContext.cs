@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OpenTelemetry.Trace;
 using PokemonBlog.Models;
 
 
@@ -12,9 +13,18 @@ namespace PokemonBlog.Data // This is what creates the database
         }
 
         public DbSet<User> Users { get; set; }
+        
         public DbSet<Post> Posts { get; set; }
+        
         public DbSet<Comment> Comments { get; set; }
+        
         public DbSet<DeckList> DeckLists { get; set; }
+
+        public DbSet<Like> Likes { get; set; }
+        public DbSet<FriendShip> FriendShips { get; set; }
+
+        public DbSet<FriendShipStatus> statuses { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,7 +61,7 @@ namespace PokemonBlog.Data // This is what creates the database
                 .HasForeignKey(U => U.RecieverId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Status>()
+            modelBuilder.Entity<FriendShipStatus>()
                 .HasMany(F => F.FriendShips) //Status can be part of many friendships
                 .WithOne(S => S.status) // Frienships table shows status
                 .HasForeignKey(F => F.StatusId) // the foreign key to that status

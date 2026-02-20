@@ -44,14 +44,14 @@ namespace PokemonBlog.Services
             _context.Users.Add(NewUser);
             await _context.SaveChangesAsync();
         }
-
+        
         public async Task<User?> GetByEmail(string  email) 
         {
 
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);        
         }
 
-        public async Task<User> f(UserSignIn userSignIn)
+        public async Task<User> CheckLogin(UserSignIn userSignIn)
         {
             User? user = await GetByEmail(userSignIn.Email);
             if (user == null)
