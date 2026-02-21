@@ -2,7 +2,7 @@
 
 namespace PokemonBlog.Dto
 {
-    public class LikeDto
+    public class LikeDto // Dto for creating a like object
     {
 
         public int UserId { get; set; }

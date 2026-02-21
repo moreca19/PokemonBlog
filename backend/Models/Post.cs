@@ -12,13 +12,14 @@ namespace PokemonBlog.Models
         public string Content { get; set; }
 
         public int NumberOfLikes {  get; set; }
+        public int NumberOfComments { get; set; }
 
 
         public int UserId { get; set; } // post belongs to a user
         public User User { get; set; } = null!; // This is here to acces User info thru this Post object
 
         public ICollection<Comment> Comments { get; set; } = new List<Comment>(); // Navigation property - one post has many comments
-        public ICollection<Like> Likes { get; set; } = new List<Like>(); // post can have manh likes
+        public ICollection<Like> Likes { get; set; } = new List<Like>(); // post can have many likes
 
     }
 }

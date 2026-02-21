@@ -32,10 +32,8 @@ namespace PokemonBlog.Services
                 throw new Exception("Not able to give the post a like");
             }
             
-            var GetPost = await _context.Posts.FirstOrDefaultAsync(p => p.Id == likeDto.PostId);
-            var NumberOflikes = GetPost.NumberOfLikes;
-            NumberOflikes++;
-            GetPost.NumberOfLikes = NumberOflikes;  
+            var Post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == likeDto.PostId);
+            Post.NumberOfLikes++;
             
 
             _context.Likes.Add(NewLike);

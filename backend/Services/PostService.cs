@@ -30,7 +30,10 @@ namespace PokemonBlog.Services
                 CreatedDate = PostCreated,
                 UpdatedDate = PostModified,
                 Content = postDto.Content,
-                UserId = postDto.UserId
+                UserId = postDto.UserId,
+                NumberOfLikes = 0
+               
+                
                 
             };
 

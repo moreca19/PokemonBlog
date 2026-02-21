@@ -8,10 +8,9 @@ namespace PokemonBlog.Interfaces
 {
     public interface ICommentService
     {
-        void UpdateComment(int  id, string comment);
-
-        void DeleteComment(int id);
-        void NewComment     (int id);
+        Task UpdateComment(UpdateComment updateComment);
+        Task DeleteComment(DeleteComment deleteComment);
+        Task<Comment> CreateNewComment (CreateNewComment createNewComment);
 
 
     }
