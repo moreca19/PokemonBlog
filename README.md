@@ -61,3 +61,19 @@ cd backend && dotnet run
 ```
 
 Frontend will be added later.
+
+## Tests
+
+**Backend (xUnit):**
+```bash
+cd backend
+dotnet test
+```
+Add tests in `backend/PokemonBlog.Tests/` as `*Tests.cs`. Mark methods with `[Fact]` (or `[Theory]` for parameterized tests). Use `Microsoft.EntityFrameworkCore.InMemory` for tests that need a database. [xUnit docs](https://xunit.net/docs/getting-started)
+
+**Frontend (Jest):**
+```bash
+cd frontend
+npm test
+```
+Add tests as `*.test.js` or `*.test.jsx` next to your components, or in a `__tests__` folder. Use `test()` or `it()` with React Testing Library (`render`, `screen`, `userEvent`). [Jest docs](https://jestjs.io/docs/getting-started) · [React Testing Library docs](https://testing-library.com/react)
