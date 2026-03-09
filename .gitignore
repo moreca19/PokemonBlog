@@ -404,3 +404,11 @@ FodyWeavers.xsd
 appsettings.json
 backend/obj/
 backend/bin/
+backend/PokemonBlog.Tests/obj/
+backend/PokemonBlog.Tests/bin/
+
+# Cursor IDE
+.cursor/
+
+# OS
+.DS_Store
