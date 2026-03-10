@@ -1,9 +1,11 @@
-﻿namespace PokemonBlog.Interfaces
+﻿using PokemonBlog.Models;
+
+namespace PokemonBlog.Interfaces
 {
     public interface IDeckListService
     {
-        void NewDeckList(string Name, string Description);
+        Task<DeckList> NewDeckList();
 
-        void UpdateDeckList(string Name, string Description,int id);
+        Task UpdateDeckList();
     }
 }

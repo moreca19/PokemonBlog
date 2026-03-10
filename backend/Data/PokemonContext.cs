@@ -67,6 +67,12 @@ namespace PokemonBlog.Data // This is what creates the database
                 .HasForeignKey(F => F.StatusId) // the foreign key to that status
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<FriendShipStatus>().HasData(
+                new FriendShipStatus { Id = 1, Description = "Pending" },
+                new FriendShipStatus { Id = 2, Description = "Accepted" },
+                new FriendShipStatus { Id = 3, Description = "Declined" }
+                );
+
             modelBuilder.Entity<Post>()
                 .HasMany(P=>P.Comments)
                 .WithOne(C => C.Post)

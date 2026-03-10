@@ -9,15 +9,10 @@ namespace PokemonBlog.Models
         
         public string ListName { get; set; }
         
-        public string ListDescription { get; set; }
-
-       
-
         public DateTime DateCreated { get; set; }
+
+        public string URL { get; set; }
         
-        public DateTime DateUpdated { get; set; }
-
-
         public int UserId { get; set; }
         
         public User User { get; set; }

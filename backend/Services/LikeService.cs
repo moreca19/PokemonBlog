@@ -3,6 +3,7 @@ using PokemonBlog.Data;
 using PokemonBlog.Interfaces;
 using PokemonBlog.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace PokemonBlog.Services
@@ -17,14 +18,14 @@ namespace PokemonBlog.Services
             _context = context;        
         }
 
-        public async Task<Like> CreateLike(LikeDto likeDto)
+        public async Task<Like> CreateLike(CreateNewLike createNewLike)
         {
 
 
             var NewLike = new Like
             {
-                PostId = likeDto.PostId,
-                UserId = likeDto.UserId,
+                PostId = createNewLike.PostId,
+                UserId = createNewLike.UserId,
 
             };
             if (NewLike == null)
@@ -32,7 +33,7 @@ namespace PokemonBlog.Services
                 throw new Exception("Not able to give the post a like");
             }
             
-            var Post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == likeDto.PostId);
+            var Post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == createNewLike.PostId);
             Post.NumberOfLikes++;
             
 
@@ -40,6 +41,19 @@ namespace PokemonBlog.Services
             await _context.SaveChangesAsync();
 
             return NewLike;
+        }
+
+        public async Task UnlikePost(UnlikePost unlikePost)
+        {
+            var PostToUnlike = await _context.Posts.FirstOrDefaultAsync(p=> p.Id ==  unlikePost.PostId);
+            PostToUnlike.NumberOfLikes--;
+
+            var LikeToDelete = _context.Likes.FirstOrDefaultAsync(l=> l.Id == unlikePost.LikeId);
+
+            _context.Remove(LikeToDelete);
+            await _context.SaveChangesAsync();
+
+
         }
 
 

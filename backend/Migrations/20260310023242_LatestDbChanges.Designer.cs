@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PokemonBlog.Data;
@@ -11,9 +12,11 @@ using PokemonBlog.Data;
 namespace PokemonBlog.Migrations
 {
     [DbContext(typeof(PokemonContext))]
-    partial class PokemonContextModelSnapshot : ModelSnapshot
+    [Migration("20260310023242_LatestDbChanges")]
+    partial class LatestDbChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,30 +126,12 @@ namespace PokemonBlog.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<bool>("Description")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
                     b.ToTable("statuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Pending"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Accepted"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Declined"
-                        });
                 });
 
             modelBuilder.Entity("PokemonBlog.Models.Like", b =>

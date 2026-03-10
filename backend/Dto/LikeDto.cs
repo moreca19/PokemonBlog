@@ -2,12 +2,10 @@
 
 namespace PokemonBlog.Dto
 {
-    public class LikeDto // Dto for creating a like object
-    {
+    
+    public record CreateNewLike(int UserId, int PostId);
 
-        public int UserId { get; set; }
-        public int PostId { get; set; }
-    }
+    public record UnlikePost(int PostId, int LikeId);
 
 
 }
