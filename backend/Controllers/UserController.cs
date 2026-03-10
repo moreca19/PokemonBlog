@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PokemonBlog.Interfaces;
 using PokemonBlog.Dto;
@@ -12,10 +13,12 @@ namespace PokemonBlog.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IJwtService _jwtService;
 
-        public UserController(IUserService userService) 
+        public UserController(IUserService userService, IJwtService jwtService)
         {
             _userService = userService;
+            _jwtService = jwtService;
         }
 
         [HttpPost("NewUser")]
@@ -27,10 +30,18 @@ namespace PokemonBlog.Controllers
         [HttpPost("CheckLogin")]
         public async Task<IActionResult> CheckLogin([FromBody] UserSignIn userSignIn)
         {
-            await _userService.CheckLogin(userSignIn) ;
-            return Ok();
+            var user = await _userService.CheckLogin(userSignIn);
+            var token = _jwtService.GenerateToken(user);
+            return Ok(new LoginResponseDto
+            {
+                Token = token,
+                Id = user.Id,
+                Email = user.Email,
+                UserName = user.UserName
+            });
         }
 
+        [Authorize]
         [HttpPost("UpdateUserName")]
         public async Task<IActionResult> UpdateUserName([FromBody] UpdateUserName updateUserName)
         {
@@ -38,6 +49,7 @@ namespace PokemonBlog.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPost("UpdateUserPassword")]
         public async Task<IActionResult> UpdateUserPassword([FromBody] UpdatePassword updatePassword)
         {

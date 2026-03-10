@@ -1,10 +1,9 @@
-﻿using PokemonBlog.Dto;
+using PokemonBlog.Dto;
 using PokemonBlog.Data;
+using PokemonBlog.Exceptions;
 using PokemonBlog.Interfaces;
 using PokemonBlog.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using Npgsql.TypeMapping;
 
 namespace PokemonBlog.Services
 {
@@ -24,7 +23,7 @@ namespace PokemonBlog.Services
             var UserExist = await GetByEmail(user.Email);
             if (UserExist != null) 
             {
-                throw new Exception("User with that email already exists");
+                throw new ConflictException("User with that email already exists");
             }
             
             DateTime UserCreated = DateTime.UtcNow;
@@ -56,14 +55,14 @@ namespace PokemonBlog.Services
             User? user = await GetByEmail(userSignIn.Email);
             if (user == null)
             {
-                throw new Exception("The user was not found!");
+                throw new UnauthorizedException("The user was not found!");
             }
 
             bool verified = _password.Verify(userSignIn.Password, user.Password);
 
             if (!verified)
             {
-                throw new Exception("The password is incorrect");
+                throw new UnauthorizedException("The password is incorrect");
 
             }
             return user;
@@ -86,7 +85,7 @@ namespace PokemonBlog.Services
             string password = updatePassword.NewPassword;
             if (password == null) 
             {
-                throw new Exception("Password cannot be empty");
+                throw new ValidationException("Password cannot be empty");
             }
 
             updatePassword.NewPassword = _password.Hash(password);

@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using PokemonBlog.Models;
 using PokemonBlog.Data;
+using PokemonBlog.Extensions;
 using PokemonBlog.Interfaces;
+using PokemonBlog.Middleware;
+using PokemonBlog.Models;
 using PokemonBlog.Services;
 namespace PokemonBlog
 {
@@ -22,12 +24,16 @@ namespace PokemonBlog
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<IUserService, UserService>();
-
             builder.Services.AddScoped<IPasswordService, PasswordService>();
-           
+            builder.Services.AddScoped<IJwtService, JwtService>();
+
+            builder.Services.AddJwtAuthentication(builder.Configuration);
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -36,6 +42,7 @@ namespace PokemonBlog
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
