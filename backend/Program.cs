@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using PokemonBlog.Data;
 using PokemonBlog.Extensions;
 using PokemonBlog.Interfaces;
+using PokemonBlog.Middleware;
 using PokemonBlog.Models;
 using PokemonBlog.Services;
-
 namespace PokemonBlog
 {
     public class Program
@@ -32,6 +32,8 @@ namespace PokemonBlog
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();

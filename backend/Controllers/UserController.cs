@@ -30,22 +30,15 @@ namespace PokemonBlog.Controllers
         [HttpPost("CheckLogin")]
         public async Task<IActionResult> CheckLogin([FromBody] UserSignIn userSignIn)
         {
-            try
+            var user = await _userService.CheckLogin(userSignIn);
+            var token = _jwtService.GenerateToken(user);
+            return Ok(new LoginResponseDto
             {
-                var user = await _userService.CheckLogin(userSignIn);
-                var token = _jwtService.GenerateToken(user);
-                return Ok(new LoginResponseDto
-                {
-                    Token = token,
-                    Id = user.Id,
-                    Email = user.Email,
-                    UserName = user.UserName
-                });
-            }
-            catch (Exception ex) when (ex.Message is "The user was not found!" or "The password is incorrect")
-            {
-                return Unauthorized(ex.Message);
-            }
+                Token = token,
+                Id = user.Id,
+                Email = user.Email,
+                UserName = user.UserName
+            });
         }
 
         [Authorize]
